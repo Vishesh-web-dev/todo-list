@@ -26,7 +26,8 @@
 body{
     font-size: 18px;
     font-family: 'Josefin Sans', sans-serif;
-    height: 100vh;
+    /* height: 100vh; */
+    /* height: auto; */
     overflow: hidden;
     background-color: var(--Very-Dark-Blue);
 }
@@ -127,7 +128,7 @@ header{
     color: hsl(233, 14%, 35%);
 }
 footer{
-    font-size: 11px;
+    font-size: 12px;
     padding: 1rem 1.5rem;
     display: flex;
     flex-direction: row;
@@ -148,6 +149,9 @@ footer{
     width: 30%;
     justify-content: space-between;
 }
+.active{
+    margin: 0 10px;
+}
 .pointer{
     cursor: pointer;
 }
@@ -167,8 +171,31 @@ footer{
 }
 @media(max-width:450px){
     main{
-        min-width: 200px;
+        min-width: 100px;
         width: 85vw;
+    }
+    .what-to-show{
+        position: absolute;
+        right: 50%;
+        transform: translate(50%,0);
+        width: 100%;
+        background-color: hsl(235, 24%, 19%);
+        box-shadow: 0 5px 30px rgba(0, 0, 0, 0.4);
+        color: hsl(234, 11%, 52%);
+        align-items: center;
+        margin:10rem auto 3rem auto;
+        justify-content: center;
+        padding: 1rem 0;
+        font-size: 14px;
+    }
+    .active{
+        margin: 0 30px;
+    }
+    .saving-desc{
+        margin-top: 5rem;
+    }
+    .pointer:hover{
+        color: var(--Bright-Blue);
     }
 }
 
