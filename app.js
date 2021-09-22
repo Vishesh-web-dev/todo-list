@@ -1,8 +1,19 @@
-const addition = document.querySelector(".addition");
 const inputTxt = document.querySelector(".input-txt");
+inputTxt.value = "Create a new todo...";
+inputTxt.addEventListener("click", function () {
+  inputTxt.value = "";
+  inputTxt.classList.add("input-txt-clr");
+});
+inputTxt.addEventListener("blur", function () {
+  inputTxt.value = "Create a new todo...";
+  inputTxt.classList.remove("input-txt-clr");
+});
+
+const addition = document.querySelector(".addition");
 const boxCount = document.querySelector(".box-count");
 let count = 0;
 
+ //everytime i persskey this happens
 document.addEventListener("keydown", function (e) {
   if (e.key == "Enter" && inputTxt.value != "") {
     addition.innerHTML += `<div class="box">
@@ -12,20 +23,21 @@ document.addEventListener("keydown", function (e) {
         <div class="save-txt">${inputTxt.value}</div>
         <img src="./images/icon-cross.svg" alt="" class="cross hidden">
       </div>`;
-      count++;
-      boxCount.textContent = `${count}`;
+    count++;
+    boxCount.textContent = `${count}`;
+    inputTxt.value = "";
   }
-
+  //these variables keep gets update every time a key is pressed
   const imgHolder = document.querySelectorAll(".img-holder");
   const checkImg = document.querySelectorAll(".check-img");
   const saveTxt = document.querySelectorAll(".save-txt");
   const boxes = document.querySelectorAll(".box");
   const clearCompleted = document.querySelector(".clear-completed");
   const all = document.querySelector(".all");
+  all.classList.add("clr-blue");
   const active = document.querySelector(".active");
   const completed = document.querySelector(".completed");
   const cross = document.querySelectorAll(".cross");
-
   //select note and deselect note and cross on hover and onclick hover removes note
   for (let i = 0; i < imgHolder.length; i++) {
     imgHolder[i].addEventListener("click", function () {
@@ -51,11 +63,12 @@ document.addEventListener("keydown", function (e) {
     });
     cross[i].addEventListener("click", function () {
       boxes[i].remove();
-      count--;
-      boxCount.textContent = `${count}`;
+      if (!saveTxt[i].classList.contains("cutme")) {
+        count--;
+        boxCount.textContent = `${count}`;
+      }
     });
   }
-
   //clear complete
   clearCompleted.addEventListener("click", function () {
     for (let i = 0; i < boxes.length; i++) {
@@ -64,7 +77,6 @@ document.addEventListener("keydown", function (e) {
       }
     }
   });
-
   //show all notes
   all.addEventListener("click", function () {
     all.classList.add("clr-blue");
@@ -74,7 +86,6 @@ document.addEventListener("keydown", function (e) {
       boxes[i].classList.remove("hidden");
     }
   });
-
   //show only active notes
   active.addEventListener("click", function () {
     all.classList.remove("clr-blue");
@@ -88,7 +99,6 @@ document.addEventListener("keydown", function (e) {
       }
     }
   });
-
   //show completed notes
   completed.addEventListener("click", function () {
     all.classList.remove("clr-blue");
